@@ -1,0 +1,9 @@
+# Emacs backup
+*~
+# Temporary files
+temp*
+# Work files (a different category than temp files. Used in step1)
+work*
+__pycache__
+*.bak
+
