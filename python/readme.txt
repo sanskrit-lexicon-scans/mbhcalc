@@ -190,3 +190,15 @@ Extra verse either at end of page 33 or beginning of page 34
 
 3	315	Χ	225	253	29
 221 > 225 : 4   JIM: I don't see this
+
+-----------------------------------------------------------------
+verse-gap.txt
+
+-----------------------------------------------------------------
+n /e/pdfwork/mbhcalc/vol4,
+'mbh_calc_4 454.pdf 'is first page of Harivamsa.
+  internal page number is 445.
+
+'mbh_calc_4 1016.pdf 'is last page of Harivamsa.
+  internal page number is 1007.
+
