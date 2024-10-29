@@ -47,6 +47,9 @@ def init_pagerecs(filein):
    if iline == 0:
     # skip field names
     continue
+   if line.startswith(';'):
+    # skip comment lines
+    continue
    pagerec = Pagerec(line,iline)
    if pagerec.parvan != None:
     # skip two blank pages
