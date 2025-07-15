@@ -1,6 +1,6 @@
 # coding=utf-8
 """
- make_parvan_verse.py  Minor revision to 
+ make_parvan_verse.py  
 """
 from __future__ import print_function
 import sys, re,codecs

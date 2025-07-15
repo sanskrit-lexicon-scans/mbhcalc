@@ -1,6 +1,6 @@
-Convert the tab-delimited index file into a json object,
-python make_json_index.py MBh.Calc.ed.index.Vol.s.1-4.txt index.json
-Manually added 'indexdata='  to this json object, for use in main.js.
+
+Convert the tab-delimited index file into a json object/
+sh redo.sh
 
 ---------------------------------------------------------------------
 notes on preparation of the pdfpages file.
