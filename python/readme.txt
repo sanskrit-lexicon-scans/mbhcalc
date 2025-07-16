@@ -2,7 +2,7 @@
 Convert the tab-delimited index file into a json object/
 sh redo.sh
 ---------------------------------------------------------------------
-python pvmerge.py MBh.Calc.ed.index.Vol.s.1-4.txt pvmerge.txt
+python pvmerge.py MBh.Calc.ed.index.Vol.s.1-4.txt pvmergegap.txt pvmerge.txt
  Attempt to get all verses with a given parvan.
  Anomalies in parvans 3-9
    verse gaps

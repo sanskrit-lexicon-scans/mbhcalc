@@ -18,31 +18,6 @@ def init_parvandict(pagerecs):
   d[parvan].append(recobj)
  return d
 
-def merge_verses_version1(pagerecs):
- pvarr = []
- for irec,rec in enumerate(pagerecs):
-  if irec == 0:
-   pv = [rec.parvan,int(rec.verse1),int(rec.verse2)]
-   continue
-  rec0 = pagerecs[irec - 1] # previous
-  if rec.parvan == rec0.parvan:
-   if int(rec.verse1) != (int(rec0.verse2) + 1):
-    print('gap: %s: %s,%s  AND %s,%s' %(
-     rec.parvan, rec0.verse1,rec0.verse2, rec.verse1,rec.verse2))
-    #print(rec0.line)
-    #print(rec.line)
-    pv.append('gap')
-    pvarr.append(pv)
-    pv = [rec.parvan,int(rec.verse1),int(rec.verse2),'gap']
-   else:
-    pv[2] = int(rec.verse2)
-  else:
-   # new parvan
-   pvarr.append(pv)
-   pv = [rec.parvan,int(rec.verse1),int(rec.verse2)]
- pvarr.append(pv)
- return pvarr
-
 def write(fileout,pvarr):
  with codecs.open(fileout,"w","utf-8") as f:
   outarr = []
@@ -84,7 +59,36 @@ def write(fileout,pvarr):
  print(nvtot,'estimated number of verses')
  assert nvtot == nvt
  #print('nvt =',nvt)
+ return outarr
 
+def write1(fileout,arr):
+ d = {}
+
+ for out in arr:
+  m =  re.search(r'^([0-9]+).*nv=([0-9]+)',out)
+  if m == None:
+   continue
+  p = int(m.group(1))
+  nv = int(m.group(2))
+  if p not in d:
+   d[p] = 0
+  d[p] = d[p] + nv
+ keys = d.keys() # parvans 1-18
+ outarr = []
+ nvt = 0
+ for p in keys:
+  nvt = nvt + d[p]
+ out_tot = 'Total verses: %d' % nvt
+ 
+ for p in keys:
+  out = '%2d : %d' %(p,d[p])
+  outarr.append(out)
+ outarr.append(out_tot)
+ with codecs.open(fileout,"w","utf-8") as f:
+  for out in outarr:
+   f.write(out + '\n')
+ print(len(outarr),"lines written to",fileout)
+ 
 def merge_verses(pagerecs):
  pvarr = []
  for irec,rec in enumerate(pagerecs):
@@ -110,16 +114,17 @@ def merge_verses(pagerecs):
    pvarr.append(pv)
    # start new parvan
    pv = [rec.parvan,int(rec.verse1),int(rec.verse2)]
-   
  pvarr.append(pv)
  return pvarr
   
 if __name__ == "__main__":
  filein=sys.argv[1]  # tab-delimited index file
- fileout = sys.argv[2]
+ fileout = sys.argv[2]  # include gaps
+ fileout1 = sys.argv[3] # totals by parvan
  pagerecs = init_pagerecs(filein)
  pvarr = merge_verses(pagerecs)
- write(fileout,pvarr)
+ outarr = write(fileout,pvarr)
+ write1(fileout1,outarr)
  exit(1)
  parvandict = init_parvandict(pagerecs)
  write(fileout,parvandict)
