@@ -7,7 +7,10 @@ python pvmerge.py MBh.Calc.ed.index.Vol.s.1-4.txt pvmergegap.txt pvmerge.txt
  Anomalies in parvans 3-9
    verse gaps
    verse overlaps
- 
+
+# compare number of verses in each parvan for mbh, bombay and calcutta versions
+cp /c/xampp/htdocs/sanskrit-lexicon-scans/mbhbomb/app1/pywork/pvmerge.txt pvmerge_bomb.txt
+python bomb_calc.py pvmerge_bomb.txt pvmerge.txt bomb_calc.txt
 ---------------------------------------------------------------------
 notes on preparation of the pdfpages file.
 Mahabharata Calcutta Edition
